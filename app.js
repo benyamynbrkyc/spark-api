@@ -1,6 +1,7 @@
 const express = require('express');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
+require('./config/db');
 // services
 const setUser = require('./api/services/middleware/setUser');
 const { authUser, authRole } = require('./api/services/middleware/auth/auth');

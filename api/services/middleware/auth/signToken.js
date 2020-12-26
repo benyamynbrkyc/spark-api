@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
-const { JWT_SECRET } = require('../../../../config');
+const { JWT_SECRET, JWT_EXP_TIME } = require('../../../../config/vars');
 
 module.exports = (userObject) => {
-  return jwt.sign({ userObject }, JWT_SECRET, { expiresIn: '1h' });
+  return jwt.sign({ userObject }, JWT_SECRET, { expiresIn: JWT_EXP_TIME });
 };
