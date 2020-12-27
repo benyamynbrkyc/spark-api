@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const { JWT_SECRET } = require('../../../../config/vars');
+const { JWT_SECRET } = require('../../../config/vars.config');
 // token format:
 // Bearer <jwt-access-token>
 // because of this format, we split it and extract only the <jwt-access-token>

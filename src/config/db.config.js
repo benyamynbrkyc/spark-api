@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { MONGO_ATLAS_CONNECTION_STRING } = require('./vars');
+const { MONGO_ATLAS_CONNECTION_STRING } = require('./vars.config');
 
 mongoose.connect(MONGO_ATLAS_CONNECTION_STRING, {
   useNewUrlParser: true,
