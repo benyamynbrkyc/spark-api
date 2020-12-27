@@ -6,7 +6,7 @@ const saltRounds = 10;
 // services
 const verifyToken = require('../middleware/validation/verifyToken');
 const { ROLE } = require('../../config/vars.config');
-const signToken = require('./middleware/auth/signToken');
+const signToken = require('../middleware/auth/signToken');
 const {
   createUser,
   findUserByEmailAndPassword,

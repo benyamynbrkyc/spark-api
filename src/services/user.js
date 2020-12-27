@@ -21,8 +21,7 @@ const findUserByEmailAndPassword = async (userCredentials) => {
   if (!user) {
     return { err: 'no user', status: 401 };
   }
-  console.log(user);
-  console.log(userCredentials.password, user.password);
+
   const match = bcrypt.compareSync(userCredentials.password, user.password);
 
   if (!match) return { err: 'invalid password', status: 401 };
