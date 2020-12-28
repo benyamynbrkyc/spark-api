@@ -4,8 +4,6 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
 // services
-const verifyToken = require('../middleware/validation/verifyToken');
-const { ROLE } = require('../../config/vars.config');
 const signToken = require('../middleware/auth/signToken');
 const {
   createUser,
@@ -15,11 +13,13 @@ const {
 router.post('/login', async (req, res) => {
   const userCredentials = req.body.userCredentials;
 
-  const token = signToken(userCredentials);
-
   const user = await findUserByEmailAndPassword(userCredentials);
 
-  console.log(token, user);
+  if (user.err) {
+    res.status(401);
+    return res.send({ err: 'User not found' });
+  }
+  const token = signToken(userCredentials);
 
   res.send({ message: 'Logged in', user, token });
 });
@@ -33,10 +33,14 @@ router.post('/signup', async (req, res) => {
   try {
     const user = await createUser(newUser);
 
-    const token = signToken(newUser);
+    if (!user.err) {
+      const token = signToken(newUser);
 
-    res.status(200);
-    return res.send({ message: 'Successfully created user', user, token });
+      res.status(200);
+      return res.send({ message: 'Successfully created user', user, token });
+    } else {
+      res.send({ message: 'Could not create user', err });
+    }
   } catch (err) {
     res.send({ message: 'Could not create user', err });
   }

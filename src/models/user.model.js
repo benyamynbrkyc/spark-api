@@ -5,13 +5,13 @@ const UserSchema = new mongoose.Schema(
     name: {
       type: String,
       required: true,
-      minlength: 2,
+      minlength: 2
     },
     email: {
       type: String,
       required: true,
       minlength: 3,
-      unique: true,
+      unique: true
     },
     phone: {
       type: String,
@@ -21,8 +21,8 @@ const UserSchema = new mongoose.Schema(
           const regex = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/g;
           return regex.test(value);
         },
-        message: 'Phone number must be in format: +(123)-123-456-789',
-      },
+        message: 'Phone number must be in format: +(123)-123-456-789'
+      }
     },
     birth_date: {
       type: String,
@@ -31,8 +31,9 @@ const UserSchema = new mongoose.Schema(
           const regex = /^[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/g;
           return regex.test(value);
         },
-        message: 'Birth Date must be in format: 2002-28-02',
+        message: 'Birth Date must be in format: 2002-28-02'
       },
+      default: new Date()
     },
     role: {
       type: String,
@@ -42,16 +43,16 @@ const UserSchema = new mongoose.Schema(
           if (value !== 'admin' && value !== 'customer') return false;
           return true;
         },
-        message: "Role must be either 'admin' or 'customer'",
-      },
+        message: "Role must be either 'admin' or 'customer'"
+      }
     },
     password: {
       type: String,
-      required: true,
+      required: true
     },
     profile_pic: {
-      type: String,
-    },
+      type: String
+    }
   },
   { collection: 'users' }
 );
