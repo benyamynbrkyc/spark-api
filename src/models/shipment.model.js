@@ -2,10 +2,23 @@ const mongoose = require('mongoose');
 
 const ShipmentSchema = new mongoose.Schema(
   {
-    sender_address: String, // validate this
-    delivery_address: String, // validate this
-    created_at: Date, // validate this
-    delivered_at: Date, // validate this
+    sender_address: {
+      type: String,
+      trim: true
+    },
+    delivery_address: {
+      type: String,
+      trim: true
+    },
+    created_at: Date,
+    delivered_at: Date,
+    customer_id: {
+      type: String,
+      trim: true
+    },
+    products: {
+      type: Array
+    }
   },
   { collection: 'shipments' }
 );

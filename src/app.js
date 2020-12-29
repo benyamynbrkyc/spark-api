@@ -5,6 +5,9 @@ require('./config/db.config');
 const cors = require('cors');
 // routes
 const userRouter = require('./api/routes/user.routes');
+const productsRouter = require('./api/routes/product.routes');
+const orderRouter = require('./api/routes/order.routes');
+const shipmentsRouter = require('./api/routes/shipment.routes');
 
 // app config
 const app = express();
@@ -16,5 +19,8 @@ app.use(cors());
 
 // routes
 app.use('/user', userRouter);
+app.use('/products', productsRouter);
+app.use('/order', orderRouter);
+app.use('/shipment', shipmentsRouter);
 
 app.listen(PORT, console.log(`Server listening on ${PORT}`));

@@ -5,17 +5,21 @@ const UserSchema = new mongoose.Schema(
     name: {
       type: String,
       required: true,
-      minlength: 2
+      minlength: 2,
+      trim: true
     },
     email: {
       type: String,
       required: true,
       minlength: 3,
-      unique: true
+      unique: true,
+      trim: true
     },
     phone: {
       type: String,
       minlength: 9,
+
+      trim: true,
       validate: {
         validator: function (value) {
           const regex = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/g;
@@ -26,6 +30,7 @@ const UserSchema = new mongoose.Schema(
     },
     birth_date: {
       type: String,
+      trim: true,
       validate: {
         validator: function (value) {
           const regex = /^[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/g;
@@ -48,10 +53,12 @@ const UserSchema = new mongoose.Schema(
     },
     password: {
       type: String,
-      required: true
+      required: true,
+      trim: true
     },
     profile_pic: {
-      type: String
+      type: String,
+      trim: true
     }
   },
   { collection: 'users' }

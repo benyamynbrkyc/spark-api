@@ -8,6 +8,7 @@ const signToken = require('../middleware/auth/signToken');
 const {
   createUser,
   findUserByEmailAndPassword,
+  checkIfUserExists
 } = require('../../services/user');
 
 router.post('/login', async (req, res) => {
@@ -31,7 +32,13 @@ router.post('/signup', async (req, res) => {
   newUser.password = hashedPass;
 
   try {
+    const userExists = await checkIfUserExists(newUser.email);
+
+    if (userExists)
+      return res.send({ message: 'User already exists', status: 403 });
+
     const user = await createUser(newUser);
+    console.log(user);
 
     if (!user.err) {
       const token = signToken(newUser);

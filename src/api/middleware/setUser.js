@@ -1,9 +1,11 @@
 const User = require('../../models/user.model');
-const { findAllUsers } = require('../../services/user');
+const { findAllUsers, findUserById } = require('../../services/user');
 
 module.exports = async (req, res, next) => {
   const userId = req.body.userId;
   if (!userId) return res.send({ message: 'userId missing' });
+
+  findUserById(userId);
 
   const users = await findAllUsers();
 
@@ -15,7 +17,7 @@ module.exports = async (req, res, next) => {
   } else {
     return res.send({
       message: 'No user found',
-      status: 404,
+      status: 404
     });
   }
 };

@@ -12,6 +12,7 @@ const createUser = async (user) => {
     await User.create(user);
     return { user };
   } catch (err) {
+    console.log(err);
     return { err };
   }
 };
@@ -29,4 +30,23 @@ const findUserByEmailAndPassword = async (userCredentials) => {
   return user;
 };
 
-module.exports = { findAllUsers, createUser, findUserByEmailAndPassword };
+const findUserById = async (id) => {
+  const user = await User.findOne({ _id: id }).exec();
+  if (user) console.log(user, true);
+  if (!user) console.log('no user', user, false);
+  return;
+};
+
+const checkIfUserExists = async (email) => {
+  const user = await User.findOne({ email }).exec();
+  if (user) return true;
+  return false;
+};
+
+module.exports = {
+  findAllUsers,
+  createUser,
+  findUserByEmailAndPassword,
+  checkIfUserExists,
+  findUserById
+};

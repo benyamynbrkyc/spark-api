@@ -2,9 +2,22 @@ const mongoose = require('mongoose');
 
 const OrderSchema = new mongoose.Schema(
   {
-    created_at: Date, // validate this
-    cost: Number, // validate this
-    delivery_address: String, // validate this
+    created_at: Date,
+    cost: {
+      type: Number,
+      trim: true
+    },
+    delivery_address: {
+      type: String,
+      trim: true
+    },
+    customer_id: {
+      type: String,
+      trim: true
+    },
+    products: {
+      type: Array
+    }
   },
   { collection: 'orders' }
 );
