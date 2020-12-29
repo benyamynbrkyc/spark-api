@@ -54,12 +54,44 @@ Copy the connection string
 In the Choose your connection method step in the modal, select the button marked Connect Your Application. You will see your connection string.
 ```
 
-Open the project in your favorite editor. In the project root folder, create a .env file and add the following
+Clone the repository
+
+```
+git clone https://github.com/benyamynbrkyc/spark-api.git
+```
+
+Go into project root
+
+```
+cd spark-api
+```
+
+Install dependencies
+
+```
+npm i
+```
+
+If a package says it has problems working with your version of Node, run:
+
+```
+npm rebuild <package-name>
+```
+
+
+Open the project in your favorite editor. In the project root folder, create a .env file and add the following:
 
 ```
 JWT_SECRET=some-secret-key
 MONGO_ATLAS_CONNECTION_STRING=your-connection-string
 ```
+
+Start the development server
+
+```
+npm run dev
+```
+
 
 ## Built With
 
