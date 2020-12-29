@@ -1,10 +1,15 @@
+// route handlers for operations with the Product database model
+
 const express = require('express');
 const router = express.Router();
 
+// middleware imports
 const verifyToken = require('../middleware/validation/verifyToken');
 const { ROLE } = require('../../config/vars.config');
 const { authUser, authRole } = require('../middleware/auth/auth');
 const setUser = require('../middleware/setUser');
+
+// service / business logic imports
 const {
   findAllProducts,
   createProduct,
@@ -12,11 +17,13 @@ const {
   deleteProduct
 } = require('../../services/product');
 
+// get all products
 router.get('/', async (req, res) => {
   const products = await findAllProducts();
   res.send(products);
 });
 
+// create a new product
 router.post('/new', verifyToken, setUser, async (req, res) => {
   const newProduct = req.body.newProduct;
 
@@ -29,6 +36,7 @@ router.post('/new', verifyToken, setUser, async (req, res) => {
   }
 });
 
+// edit an existing product
 router.patch(
   '/edit',
   verifyToken,
@@ -48,6 +56,7 @@ router.patch(
   }
 );
 
+// delete an existing product
 router.delete(
   '/delete',
   verifyToken,

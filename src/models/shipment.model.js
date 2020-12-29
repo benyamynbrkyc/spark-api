@@ -1,3 +1,5 @@
+// mongoose Schema / Model definition for shipments
+
 const mongoose = require('mongoose');
 
 const ShipmentSchema = new mongoose.Schema(

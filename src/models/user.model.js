@@ -1,3 +1,5 @@
+// mongoose Schema / Model definition for users
+
 const mongoose = require('mongoose');
 
 const UserSchema = new mongoose.Schema(
@@ -18,9 +20,9 @@ const UserSchema = new mongoose.Schema(
     phone: {
       type: String,
       minlength: 9,
-
       trim: true,
       validate: {
+        // custom regex validation for phone number (passed as a string with the below format)
         validator: function (value) {
           const regex = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/g;
           return regex.test(value);
@@ -32,6 +34,7 @@ const UserSchema = new mongoose.Schema(
       type: String,
       trim: true,
       validate: {
+        // custom regex validation for birth date (passed as a string with the below format)
         validator: function (value) {
           const regex = /^[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/g;
           return regex.test(value);
@@ -44,6 +47,7 @@ const UserSchema = new mongoose.Schema(
       type: String,
       required: true,
       validate: {
+        // custom validation for the user role must be either 'admin' or 'customer'
         validator: function (value) {
           if (value !== 'admin' && value !== 'customer') return false;
           return true;

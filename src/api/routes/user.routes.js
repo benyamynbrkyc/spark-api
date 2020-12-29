@@ -1,16 +1,23 @@
+// route handlers for operations with the User database model
+
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
-// services
+// middleware imports
 const signToken = require('../middleware/auth/signToken');
+
+// service / business logic imports
 const {
   createUser,
   findUserByEmailAndPassword,
   checkIfUserExists
 } = require('../../services/user');
 
+// log in handler, finds a user from credentials passed in through
+// req.body.userCredentials and returns a user object with the signed jwt token
+// stored in Vuex store on the frontend
 router.post('/login', async (req, res) => {
   const userCredentials = req.body.userCredentials;
 
@@ -25,6 +32,7 @@ router.post('/login', async (req, res) => {
   res.send({ message: 'Logged in', user, token });
 });
 
+// sign up handler, creates a new user with a hashed password and saves to the db
 router.post('/signup', async (req, res) => {
   const newUser = req.body;
 

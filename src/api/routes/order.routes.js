@@ -1,3 +1,5 @@
+// route handlers for operations with the Order database model
+
 const express = require('express');
 const router = express.Router();
 
@@ -6,6 +8,9 @@ const { authUser } = require('../middleware/auth/auth');
 const setUser = require('../middleware/setUser');
 const { createOrder } = require('../../services/order');
 
+// create an order
+// order deletion and modifying is not written as a user
+// is not able to modify an order after it has been placed
 router.post('/new', verifyToken, setUser, authUser, async (req, res) => {
   const order = req.body.order;
 

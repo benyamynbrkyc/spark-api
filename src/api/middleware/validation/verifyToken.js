@@ -6,12 +6,12 @@ const { JWT_SECRET } = require('../../../config/vars.config');
 const verifyToken = (req, res, next) => {
   // get auth header value, we send it as a bearer token
   const bearer = req.headers['authorization'];
-  // check if bearer is undefined
   if (bearer == undefined) return res.sendStatus(403);
 
   // split to get token
   const token = bearer.split(' ')[1];
 
+  // verify token validity
   jwt.verify(token, JWT_SECRET, (err, authData) => {
     if (err) return res.sendStatus(403);
 

@@ -1,13 +1,22 @@
 {
-  "name": "spark-test",
+  "name": "spark-api-certificate",
   "version": "1.0.0",
-  "description": "",
+  "description": "Spark School backend API made as a final project for the certificate of completion.",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon src/app.js"
+    "dev": "nodemon src/app.js",
+    "start": "node src/app.js"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "spark",
+    "nsoft",
+    "node",
+    "jwt",
+    "authentication",
+    "api",
+    "backend"
+  ],
+  "author": "Benjamin Brkic | benjamin.brkic@gmail.com",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.0.0",

@@ -1,3 +1,4 @@
+// authenticate if the user object exists on the request
 const authUser = (req, res, next) => {
   if (req.user == null) {
     res.status(403);
@@ -7,6 +8,7 @@ const authUser = (req, res, next) => {
   next();
 };
 
+// use when authUser completes, authenticate if the user is an admin or a regular customer
 const authRole = (role) => {
   return (req, res, next) => {
     if (req.user.role !== role) {

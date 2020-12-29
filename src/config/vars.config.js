@@ -1,3 +1,5 @@
+// export sensitive environment variables (process.env, dotenv package)
+
 const JWT_SECRET = process.env.JWT_SECRET;
 const MONGO_ATLAS_CONNECTION_STRING = process.env.MONGO_ATLAS_CONNECTION_STRING;
 const ROLE = {

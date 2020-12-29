@@ -1,11 +1,15 @@
+// service / business logic for the Product database model
+
 const Product = require('../models/product.model');
 
+// find all products in the db
 const findAllProducts = async () => {
   const products = await Product.find({}).exec();
 
   return products;
 };
 
+// create a new product
 const createProduct = async (newProduct) => {
   try {
     await Product.create(newProduct);
@@ -16,6 +20,7 @@ const createProduct = async (newProduct) => {
   }
 };
 
+// edit an existing product, update only passed in values
 const editProduct = async (changedProduct) => {
   try {
     await Product.findByIdAndUpdate(changedProduct._id, changedProduct).exec();
@@ -26,6 +31,7 @@ const editProduct = async (changedProduct) => {
   }
 };
 
+// delete an existing product (filtered by id)
 const deleteProduct = async (id) => {
   try {
     await Product.findByIdAndDelete(id).exec();
