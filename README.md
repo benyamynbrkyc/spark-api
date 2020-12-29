@@ -1,6 +1,6 @@
 ![](img/SparkShopAPI.png)
 
-# Project Title
+# SparkShop API
 
 SparkShop backend API made as a final project for the certificate of completion of the Spark School programming course.
 Built with Node.js, Express, MongoDB (Mongoose ODM, bcrypt for password hashing) and JWT authentication on routes that write to the database.
